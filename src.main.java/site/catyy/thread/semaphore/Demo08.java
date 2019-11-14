@@ -10,7 +10,7 @@ package site.catyy.thread.semaphore;
  * ryAcquire(int permits, long timeout, TimeUnit unit) 作用：在给定的时间内未获取到permits个许可，返回false
  * @create 2019-11-14 12:36
  **/
-public class Demo08 {
+public class  Demo08 {
 
     public static void main(String[] args) {
         Service service = new Service();
