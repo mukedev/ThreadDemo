@@ -2,7 +2,9 @@ package site.catyy.thread.semaphore;
 
 import com.sun.org.apache.xpath.internal.operations.String;
 
+import java.util.Map;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 public class Service {
 
@@ -87,7 +89,7 @@ public class Service {
         }
     }*/
 
-    // demo07
+    /*// demo07
     private boolean isFair = true;
     private Semaphore semaphore = new Semaphore(1, isFair);
 
@@ -101,6 +103,66 @@ public class Service {
             e.printStackTrace();
         } finally {
             semaphore.release();
+        }
+    }*/
+
+    /*// demo08
+    private Semaphore semaphore = new Semaphore(3);
+    int permits = 3;
+
+    public void testMethod() {
+        if (semaphore.tryAcquire(permits)) {
+            System.out.println("线程" + Thread.currentThread().getName() + "首选进入！");
+            System.out.println(Integer.MAX_VALUE);
+            for (int i = 0; i < Integer.MAX_VALUE; i++) {
+                Math.random();
+            }
+            semaphore.release(permits);
+        } else {
+            System.out.println("线程" + Thread.currentThread().getName() + "未成功进入！");
+        }
+    }*/
+
+    /*// demo08 tryAquire(long timeout, TimeUnit unit)
+    private Semaphore semaphore = new Semaphore(1);
+    long timeout = 3;
+
+    public void testMethod() {
+        try {
+            if (semaphore.tryAcquire(timeout, TimeUnit.SECONDS)) {
+                System.out.println("线程" + Thread.currentThread().getName() + "首选进入！");
+                System.out.println(Integer.MAX_VALUE);
+                for (int i = 0; i < Integer.MAX_VALUE; i++) {
+                    Math.random();
+                }
+                semaphore.release();
+            } else {
+                System.out.println("线程" + Thread.currentThread().getName() + "未成功进入！");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    // demo08 tryAquire(int permits, long timeout, TimeUnit unit)
+    private Semaphore semaphore = new Semaphore(1);
+    int permits = 1;
+    long timeout = 3;
+
+    public void testMethod() {
+        try {
+            if (semaphore.tryAcquire(permits, timeout, TimeUnit.SECONDS)) {
+                System.out.println("线程" + Thread.currentThread().getName() + "首选进入！");
+                System.out.println(Integer.MAX_VALUE);
+                for (int i = 0; i < Integer.MAX_VALUE; i++) {
+                    Math.random();
+                }
+                semaphore.release(permits);
+            } else {
+                System.out.println("线程" + Thread.currentThread().getName() + "未成功进入！");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

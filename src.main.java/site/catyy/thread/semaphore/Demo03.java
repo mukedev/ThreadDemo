@@ -4,6 +4,8 @@ import java.util.concurrent.Semaphore;
 
 /**
  * 测试多次调用Semaphore类的release() 或 release(int) 可以动态增加permits的个数
+ *
+ * @author zhangYu
  */
 public class Demo03 {
 

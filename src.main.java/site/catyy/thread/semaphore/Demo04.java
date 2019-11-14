@@ -3,6 +3,8 @@ package site.catyy.thread.semaphore;
 /**
  * 方法acquireUninterruptibly() 的使用
  * 作用：使等待进入acquire()方法的线程不允许被中断
+ *
+ * @author zhangYu
  */
 public class Demo04 {
 
